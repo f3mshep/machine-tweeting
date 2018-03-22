@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 # encoding: utf-8
-from util/
 import sys
 import markovify
-sys.path.insert(0, 'util/get_twitter_auth')
-import get_twitter_auth
+import tweepy
+from util.get_twitter_auth import authorizeApp
 
 def open_file(filename):
   with open(filename) as f:
     text = f.read()
   return markovify.Text(text)
 
-def write_message(text_model):
+def post_to_twitter(message, api):
+  api.update_status(message)
+
+def write_message(text_model, api):
   message = (text_model.make_short_sentence(140))
   print(message)
+  post_to_twitter(message, api)
 
 
 if __name__ == "__main__":
@@ -21,4 +24,6 @@ if __name__ == "__main__":
     print("Incorrect number of arguments")
     exit(1)
   model = open_file(sys.argv[1])
-  write_message(model)
+  api = authorizeApp()
+
+  write_message(model, api)

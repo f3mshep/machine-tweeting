@@ -2,6 +2,7 @@ import tweepy
 import dotenv
 
 def load_dot():
+
   dotenv.load()
 
 def handleAuth():
