@@ -22,7 +22,7 @@ def open_input(filename):
   return text
 
 def write_output(output):
-  file = open('output.txt', 'w')
+  file = open('../data/output.txt', 'w')
   file.write(output)
   file.close()
 
@@ -34,5 +34,5 @@ if __name__ == '__main__':
   text = open_input(sys.argv[1])
   cleaned_text = clean_text(RGX_LIST, text)
   write_output(cleaned_text)
-  print("We did it bois")
+  print("output.txt created in ../data")
   sys.exit(0)

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # encoding: utf-8
+from util/
 import sys
 import markovify
+sys.path.insert(0, 'util/get_twitter_auth')
+import get_twitter_auth
 
 def open_file(filename):
   with open(filename) as f:
@@ -9,8 +12,9 @@ def open_file(filename):
   return markovify.Text(text)
 
 def write_message(text_model):
-  for integer in range(1):
-    print(text_model.make_short_sentence(140))
+  message = (text_model.make_short_sentence(140))
+  print(message)
+
 
 if __name__ == "__main__":
   if len(sys.argv) != 2:

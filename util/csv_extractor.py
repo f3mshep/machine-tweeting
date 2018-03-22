@@ -22,7 +22,7 @@ def parse_file(filename):
 
 
 def write_output(output):
-  file = open('csv_output.txt', 'w')
+  file = open('../data/csv_output.txt', 'w')
   file.write(output)
   file.close()
 
@@ -39,5 +39,7 @@ if __name__ == '__main__':
     sys.exit(1)
   raw_list = parse_file(sys.argv[1])
   write_output(clean_list(raw_list))
+  print("csv_output.txt saved in ../data")
+  sys.exit(0)
   # cleaned_string = clean_list(raw_list, RGX_LIST)
   # write_output(cleaned_string)

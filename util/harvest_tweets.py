@@ -5,22 +5,16 @@ import tweepy  # https://github.com/tweepy/tweepy
 import csv
 import dotenv
 import sys
+from get_twitter_auth import authorizeApp
 
 #Twitter API credentials
-dotenv.load()
-consumer_key = dotenv.get('ENV_KEY')
-consumer_secret = dotenv.get('ENV_SECRET')
-access_key = dotenv.get('TOKEN_KEY')
-access_secret = dotenv.get('TOKEN_SECRET')
+
 
 
 def get_all_tweets(screen_name):
-	#Twitter only allows access to a users most recent 3240 tweets with this method
-
 	#authorize twitter, initialize tweepy
-	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-	auth.set_access_token(access_key, access_secret)
-	api = tweepy.API(auth)
+
+	api = authorizeApp()
 
 	#initialize a list to hold all the tweepy Tweets
 	alltweets = []
@@ -55,7 +49,7 @@ def get_all_tweets(screen_name):
                tweet.text] for tweet in alltweets]
 
 	#write the csv
-	with open('%s_tweets.csv' % screen_name, 'w') as f:
+	with open('../data/%s_tweets.csv' % screen_name, 'w') as f:
 		writer = csv.writer(f)
 		writer.writerow(["id", "created_at", "text"])
 		writer.writerows(outtweets)
@@ -70,3 +64,4 @@ if __name__ == '__main__':
 		sys.exit(1)
 
 	get_all_tweets(sys.argv[1])
+	sys.exit(0)
