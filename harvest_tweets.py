@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # encoding: utf-8
 
 import tweepy  # https://github.com/tweepy/tweepy
 import csv
 import dotenv
-
+import sys
 
 #Twitter API credentials
 dotenv.load()
@@ -52,7 +52,7 @@ def get_all_tweets(screen_name):
 
 	#transform the tweepy tweets into a 2D array that will populate the csv
 	outtweets = [[tweet.id_str, tweet.created_at,
-               tweet.text.encode("utf-8")] for tweet in alltweets]
+               tweet.text] for tweet in alltweets]
 
 	#write the csv
 	with open('%s_tweets.csv' % screen_name, 'w') as f:
@@ -65,4 +65,8 @@ def get_all_tweets(screen_name):
 
 if __name__ == '__main__':
   	#pass in the username of the account you want to download
-	get_all_tweets("J_tsar")
+	if len(sys.argv) != 2:
+		print("Wrong number of arguments")
+		sys.exit(1)
+
+	get_all_tweets(sys.argv[1])
