@@ -26,20 +26,18 @@ def write_output(output):
   file.write(output)
   file.close()
 
-def clean_list(list_to_be_parsed, rgx_list):
-  import pdb; pdb.set_trace()
-  new_text = list_to_be_parsed
-  #TODO: remove this pattern, add to RGX_LIST, make sure it works
-  new_text = "\n".join(new_text)
-  for rgx_match in rgx_list:
-      new_text = re.sub(rgx_match, '', new_text)
-  return new_text
+def clean_list(list_to_be_parsed):
+  new_text = []
+  for string_fragment in list_to_be_parsed:
+    if not re.match('^RT', string_fragment) and not re.match(r'^http[s]?:\/\/.*[\W]*', string_fragment):
+      new_text.append(string_fragment)
+  return "\n".join(new_text)
 
 if __name__ == '__main__':
   if len(sys.argv) != 2:
     print("Wrong number of arguments")
     sys.exit(1)
   raw_list = parse_file(sys.argv[1])
-  write_output("\n".join(raw_list))
+  write_output(clean_list(raw_list))
   # cleaned_string = clean_list(raw_list, RGX_LIST)
   # write_output(cleaned_string)

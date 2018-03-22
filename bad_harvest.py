@@ -17,7 +17,7 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, TOKEN_SECRET)
 
 api = tweepy.API(auth)
-screen_name = 'NightValeRadio'
+screen_name = 'officialjaden'
 #initialize a list to hold all the tweepy Tweets
 alltweets = []
 
@@ -47,8 +47,8 @@ while len(new_tweets) > 0:
 
 	print ("...%s tweets downloaded so far" % (len(alltweets)))
 cleaned_text = [re.sub(r'http[s]?:\/\/.*[\W]*', '', i.full_text, flags=re.MULTILINE) for i in alltweets] # remove urls
-cleaned_text = [re.sub(r'@[\w]*', '', i, flags=re.MULTILINE) for i in cleaned_text] # remove the @twitter mentions
-cleaned_text = [re.sub(r'RT.*','', i, flags=re.MULTILINE) for i in cleaned_text] # delete the retweets
+# cleaned_text = [re.sub(r'@[\w]*', '', i, flags=re.MULTILINE) for i in cleaned_text] # remove the @twitter mentions
+# cleaned_text = [re.sub(r'RT.*','', i, flags=re.MULTILINE) for i in cleaned_text] # delete the retweets
 #transform the tweepy tweets into a 2D array that will populate the csv
 outtweets = [[tweet.id_str, tweet.created_at, cleaned_text[idx]] for idx,tweet in enumerate(alltweets)]
 
