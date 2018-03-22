@@ -1,8 +1,9 @@
-import tweepy
+import os
+import sys
 import dotenv
+import tweepy
 
 def load_dot():
-
   dotenv.load()
 
 def handleAuth():

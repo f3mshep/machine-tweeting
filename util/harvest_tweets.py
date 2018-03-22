@@ -3,7 +3,6 @@
 
 import tweepy  # https://github.com/tweepy/tweepy
 import csv
-import dotenv
 import sys
 from get_twitter_auth import authorizeApp
 

@@ -4,6 +4,7 @@ import os
 import time
 import schedule
 import time
+import random
 
 COMMAND = r"./create_tweet 'data/welcome_nightvale.txt'"
 
@@ -15,17 +16,20 @@ def run_command():
   if do_math():
     status = os.system(COMMAND)
   else:
-    status = "Math failed."
+    status = "Math failed.."
   return status
 
-def job(command):
-  print("Initiating command")
-  status = run_command()
-  print("-"*100)
-  print("Command status = %s." % status)
+def job():
+  print("check log")
+  with open("status_log.txt", "a+") as log:
+    log.write("Initiating command\n")
+    status = run_command()
+    log.write("-"*100)
+    log.write("\n")
+    log.write("Command status = %s.\n" % status)
 
 if __name__=="__main__":
-  schedule.every(3).hours.do(job)
+  schedule.every(1).minutes.do(job)
   while True:
       schedule.run_pending()
       time.sleep(1)
