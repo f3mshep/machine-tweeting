@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+# encoding: utf-8
+import os
+import time
+import schedule
+import time
+
+COMMAND = r"./create_tweet 'data/welcome_nightvale.txt'"
+
+def do_math():
+  die = random.randint(1,10)
+  return die % 3 == 0
+
+def run_command():
+  if do_math():
+    status = os.system(COMMAND)
+  else:
+    status = "Math failed."
+  return status
+
+def job(command):
+  print("Initiating command")
+  status = run_command()
+  print("-"*100)
+  print("Command status = %s." % status)
+
+if __name__=="__main__":
+  schedule.every(3).hours.do(job)
+  while True:
+      schedule.run_pending()
+      time.sleep(1)
