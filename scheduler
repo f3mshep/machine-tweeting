@@ -29,7 +29,7 @@ def job():
     log.write("Command status = %s.\n" % status)
 
 if __name__=="__main__":
-  schedule.every(1).minutes.do(job)
+  schedule.every(3).hours.do(job)
   with open("status_log.txt", "a+") as log:
     log.write("Tweet scheduler started\n")
   while True:
