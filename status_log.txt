@@ -1,0 +1,2 @@
+2018-03-23 11:42:34.578490Tweet scheduler started
+[2018-03-23 11:45:09]:Tweet scheduler started

@@ -8,6 +8,9 @@ from util.get_twitter_auth import authorizeApp
 def open_file(filename):
   with open(filename) as f:
     text = f.read()
+    return text
+
+def create_chain(text):
   return markovify.Text(text)
 
 def post_to_twitter(message, api):
@@ -23,7 +26,7 @@ if __name__ == "__main__":
   if len(sys.argv) != 2:
     print("Incorrect number of arguments")
     exit(1)
-  model = open_file(sys.argv[1])
+  file = open_file(sys.argv[1])
+  model = create_chain(file)
   api = authorizeApp()
-
   write_message(model, api)

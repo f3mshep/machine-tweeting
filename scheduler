@@ -3,10 +3,14 @@
 import os
 import time
 import schedule
-import time
+import datetime
 import random
 
 COMMAND = r"./create_tweet 'data/welcome_nightvale.txt'"
+
+def get_timestamp():
+  current_dt = datetime.datetime.now()
+  return current_dt.strftime("[%Y-%m-%d %H:%M:%S]: ")
 
 def do_math():
   die = random.randint(1,10)
@@ -20,9 +24,8 @@ def run_command():
   return status
 
 def job():
-  print("check log")
   with open("status_log.txt", "a+") as log:
-    log.write("Initiating command\n")
+    log.write(get_timestamp() + "Initiating command\n")
     status = run_command()
     log.write("-"*100)
     log.write("\n")
@@ -31,7 +34,7 @@ def job():
 if __name__=="__main__":
   schedule.every(3).hours.do(job)
   with open("status_log.txt", "a+") as log:
-    log.write("Tweet scheduler started\n")
+    log.write(get_timestamp() + "Tweet scheduler started\n")
   while True:
       schedule.run_pending()
       time.sleep(1)

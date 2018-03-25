@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "./scheduler", line 30, in <module>
+    
+  File "/Users/alexandra/anaconda3/lib/python3.6/site-packages/schedule/__init__.py", line 493, in run_pending
+    default_scheduler.run_pending()
+  File "/Users/alexandra/anaconda3/lib/python3.6/site-packages/schedule/__init__.py", line 78, in run_pending
+    self._run_job(job)
+  File "/Users/alexandra/anaconda3/lib/python3.6/site-packages/schedule/__init__.py", line 131, in _run_job
+    ret = job.run()
+  File "/Users/alexandra/anaconda3/lib/python3.6/site-packages/schedule/__init__.py", line 411, in run
+    ret = self.job_func()
+TypeError: job() missing 1 required positional argument: 'command'

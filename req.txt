@@ -1,4 +1,3 @@
-dotenv
 markovify
 tweepy
 python-env
